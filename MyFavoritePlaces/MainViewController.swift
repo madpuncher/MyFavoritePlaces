@@ -9,7 +9,12 @@ import UIKit
 
 class MainViewController: UITableViewController {
     
-    let favoritePlaces = ["Московский Кремль и Красная площадь", "Старый Арбат","ЦПКи", "Смотровая площадка на Воробьевых горах", "Живописный мост на Крылатских холмах", "Третьяковская галерея", "Парк искусств «Музеон", "ГУМ"]
+    let favoriteRestaurants = [
+        "Burger Heroes", "Kitchen", "Bonsai", "Дастархан",
+        "Индокитай", "X.O", "Балкан Гриль", "Sherlock Holmes",
+        "Speak Easy", "Morris Pub", "Вкусные истории",
+        "Классик", "Love&Life", "Шок", "Бочка"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +25,14 @@ class MainViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        favoritePlaces.count
+        favoriteRestaurants.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = favoritePlaces[indexPath.row]
-        
+        cell.textLabel?.text = favoriteRestaurants[indexPath.row]
+        cell.imageView?.image = UIImage(named: favoriteRestaurants[indexPath.row])
         return cell
     }
     
