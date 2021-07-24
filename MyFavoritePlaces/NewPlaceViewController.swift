@@ -8,26 +8,35 @@
 import UIKit
 
 class NewPlaceViewController: UITableViewController {
-
+    
     @IBOutlet weak var placeImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.tableFooterView = UIView()
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
+            
+            let cameraImage = #imageLiteral(resourceName: "camera")
+            let galleryImage = #imageLiteral(resourceName: "photo")
+            
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
             let library = UIAlertAction(title: "Photo", style: .default) { [weak self] _ in
                 self?.chooseImagePicker(source: .photoLibrary)
             }
+            library.setValue(galleryImage, forKey: "image")
+            library.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+            
             let camera = UIAlertAction(title: "Camera", style: .default) { [weak self] _ in
                 self?.chooseImagePicker(source: .camera)
             }
-            
+            camera.setValue(cameraImage, forKey: "image")
+            camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
+
             let cancel = UIAlertAction(title: "Cancel", style: .cancel)
             
             alert.addAction(library)
