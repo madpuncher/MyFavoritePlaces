@@ -14,6 +14,7 @@
 		02529EAF26AC1B410087689C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02529EAD26AC1B410087689C /* LaunchScreen.storyboard */; };
 		02529EB726AC1B7A0087689C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02529EB626AC1B7A0087689C /* MainViewController.swift */; };
 		02529EB926AC34470087689C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02529EB826AC34470087689C /* CustomTableViewCell.swift */; };
+		02529EBB26AC4EEE0087689C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02529EBA26AC4EEE0087689C /* Place.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		02529EB026AC1B410087689C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02529EB626AC1B7A0087689C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		02529EB826AC34470087689C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		02529EBA26AC4EEE0087689C /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				02529EA426AC1B3F0087689C /* SceneDelegate.swift */,
 				02529EB826AC34470087689C /* CustomTableViewCell.swift */,
 				02529EB626AC1B7A0087689C /* MainViewController.swift */,
+				02529EBA26AC4EEE0087689C /* Place.swift */,
 				02529EA826AC1B3F0087689C /* Main.storyboard */,
 				02529EAB26AC1B410087689C /* Assets.xcassets */,
 				02529EAD26AC1B410087689C /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02529EBB26AC4EEE0087689C /* Place.swift in Sources */,
 				02529EB726AC1B7A0087689C /* MainViewController.swift in Sources */,
 				02529EA326AC1B3F0087689C /* AppDelegate.swift in Sources */,
 				02529EB926AC34470087689C /* CustomTableViewCell.swift in Sources */,
