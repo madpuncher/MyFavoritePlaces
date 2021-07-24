@@ -45,4 +45,8 @@ class MainViewController: UITableViewController {
      }
      */
     
+    @IBAction func cancellAction(_ segue: UIStoryboardSegue) {
+        // Back segue
+    }
+    
 }
