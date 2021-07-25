@@ -82,7 +82,6 @@ class NewPlaceViewController: UITableViewController {
         
     }
     
-    
     @objc private func nameDidChanged() {
         if placeName.text?.isEmpty == false {
             saveButton.isEnabled = true
@@ -104,7 +103,7 @@ extension NewPlaceViewController: UITextFieldDelegate {
     }
 }
 
-
+//MARK: - EXTENSION VC
 extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
