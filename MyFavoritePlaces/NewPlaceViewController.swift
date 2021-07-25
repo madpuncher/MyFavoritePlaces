@@ -9,12 +9,25 @@ import UIKit
 
 class NewPlaceViewController: UITableViewController {
     
+    var newPlace: Place?
+    var imageIsChanged = false
+    
     @IBOutlet weak var placeImageView: UIImageView!
+    
+    @IBOutlet weak var placeName: UITextField!
+    @IBOutlet weak var placeLocation: UITextField!
+    @IBOutlet weak var placeType: UITextField!
+    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
+        
+        saveButton.isEnabled = false
+        
+        placeName.addTarget(self, action: #selector(nameDidChanged), for: .editingChanged)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -50,6 +63,38 @@ class NewPlaceViewController: UITableViewController {
         }
     }
 
+    func saveNewPlace() {
+        
+        var image: UIImage?
+        
+        if imageIsChanged == false {
+            image = #imageLiteral(resourceName: "imagePlaceholder")
+        } else {
+            image = placeImageView.image
+        }
+        
+        let place = Place(
+            name: placeName.text ?? "",
+            location: placeLocation.text,
+            type: placeType.text,
+            restaurantImage: nil,
+            image: image)
+        
+        newPlace = place
+    }
+    
+    
+    @objc private func nameDidChanged() {
+        if placeName.text?.isEmpty == false {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
+    }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
 
 extension NewPlaceViewController: UITextFieldDelegate {
@@ -77,6 +122,9 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
         placeImageView.image = info[.editedImage] as? UIImage
         placeImageView.contentMode = .scaleAspectFill
         placeImageView.clipsToBounds = true
+        
+        imageIsChanged = true
+        
         dismiss(animated: true)
     }
 
