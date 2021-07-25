@@ -9,7 +9,6 @@ import UIKit
 
 class NewPlaceViewController: UITableViewController {
     
-    var newPlace: Place?
     var imageIsChanged = false
     
     @IBOutlet weak var placeImageView: UIImageView!
@@ -24,10 +23,9 @@ class NewPlaceViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
-        
         saveButton.isEnabled = false
-        
         placeName.addTarget(self, action: #selector(nameDidChanged), for: .editingChanged)
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -64,7 +62,7 @@ class NewPlaceViewController: UITableViewController {
     }
 
     func saveNewPlace() {
-        
+                
         var image: UIImage?
         
         if imageIsChanged == false {
@@ -73,14 +71,15 @@ class NewPlaceViewController: UITableViewController {
             image = placeImageView.image
         }
         
-        let place = Place(
+        let newPlace = Place(
             name: placeName.text ?? "",
             location: placeLocation.text,
             type: placeType.text,
-            restaurantImage: nil,
-            image: image)
+            image: image?.pngData()
+        )
         
-        newPlace = place
+        StorageManager.saveObjects(newPlace)
+        
     }
     
     
