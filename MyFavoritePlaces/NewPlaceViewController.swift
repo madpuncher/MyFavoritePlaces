@@ -8,7 +8,8 @@
 import UIKit
 
 class NewPlaceViewController: UITableViewController {
-    
+
+    var currentPlace: Place?
     var imageIsChanged = false
     
     @IBOutlet weak var placeImageView: UIImageView!
@@ -26,6 +27,7 @@ class NewPlaceViewController: UITableViewController {
         saveButton.isEnabled = false
         placeName.addTarget(self, action: #selector(nameDidChanged), for: .editingChanged)
         
+        setupEditVC()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -61,7 +63,32 @@ class NewPlaceViewController: UITableViewController {
         }
     }
 
-    func saveNewPlace() {
+    func setupEditVC() {
+        if currentPlace != nil {
+            
+            setupNavBarEditVC()
+            
+            imageIsChanged = true
+            
+            guard let data = currentPlace?.image, let image = UIImage(data: data) else { return }
+            placeName.text = currentPlace?.name
+            placeLocation.text = currentPlace?.location
+            placeType.text = currentPlace?.type
+            placeImageView.image = image
+            placeImageView.contentMode = .scaleAspectFill
+        }
+    }
+    
+    func setupNavBarEditVC() {
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        navigationItem.leftBarButtonItem = nil
+        title = currentPlace?.name
+        saveButton.isEnabled = true
+    }
+    
+    func savePlace() {
                 
         var image: UIImage?
         
@@ -78,7 +105,16 @@ class NewPlaceViewController: UITableViewController {
             image: image?.pngData()
         )
         
-        StorageManager.saveObjects(newPlace)
+        if currentPlace != nil {
+            try! realm.write{
+                currentPlace?.name = newPlace.name
+                currentPlace?.location = newPlace.location
+                currentPlace?.type = newPlace.type
+                currentPlace?.image = newPlace.image
+            }
+        } else {
+            StorageManager.saveObjects(newPlace)
+        }
         
     }
     
