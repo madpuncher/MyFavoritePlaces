@@ -88,6 +88,9 @@
                                     <segment title="Date"/>
                                     <segment title="Name"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentController:" destination="w3o-2h-1eO" eventType="valueChanged" id="JjC-OI-RWG"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="q71-C4-Ae3"/>
@@ -105,6 +108,9 @@
                     <navigationItem key="navigationItem" title="Favorite Places" largeTitleDisplayMode="never" id="wTM-lK-sA2">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="AZ" id="RvM-WY-FoJ">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="sortedAction:" destination="w3o-2h-1eO" id="JLX-if-f0w"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eN9-W5-fjb">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -114,6 +120,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentLabel" destination="IsS-uA-K33" id="NLo-oE-LUP"/>
+                        <outlet property="sortedButtonLabel" destination="RvM-WY-FoJ" id="8La-xY-Gol"/>
                         <outlet property="tableView" destination="gxu-ST-MKp" id="q7R-Kx-QVC"/>
                     </connections>
                 </viewController>

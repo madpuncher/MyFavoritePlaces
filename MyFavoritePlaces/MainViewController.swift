@@ -11,12 +11,17 @@ import RealmSwift
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var places: Results<Place>!
+    var ascending = false
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var sortedButtonLabel: UIBarButtonItem!
+    @IBOutlet weak var segmentLabel: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         places = realm.objects(Place.self)
+        ascendingSorted()
     }
     
     // MARK: - Table view data source
@@ -77,4 +82,31 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadData()
     }
     
+    @IBAction func segmentController(_ sender: UISegmentedControl) {
+        ascendingSorted()
+        tableView.reloadData()
+    }
+    
+    
+    @IBAction func sortedAction(_ sender: Any) {
+        ascending.toggle()
+        
+        if ascending {
+            sortedButtonLabel.image = #imageLiteral(resourceName: "ZA")
+        } else {
+            sortedButtonLabel.image = #imageLiteral(resourceName: "AZ")
+        }
+        
+        ascendingSorted()
+    }
+    
+    private func ascendingSorted() {
+            if segmentLabel.selectedSegmentIndex == 0 {
+                places = places.sorted(byKeyPath: "date", ascending: ascending)
+            } else if segmentLabel.selectedSegmentIndex == 1 {
+                places = places.sorted(byKeyPath: "name", ascending: ascending)
+            }
+        
+        tableView.reloadData()
+    }
 }
