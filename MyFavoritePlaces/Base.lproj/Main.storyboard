@@ -101,7 +101,7 @@
                             <constraint firstItem="gxu-ST-MKp" firstAttribute="leading" secondItem="q71-C4-Ae3" secondAttribute="leading" id="LJb-MW-FXi"/>
                             <constraint firstItem="IsS-uA-K33" firstAttribute="leading" secondItem="q71-C4-Ae3" secondAttribute="leading" id="PWE-q4-AUJ"/>
                             <constraint firstItem="gxu-ST-MKp" firstAttribute="top" secondItem="IsS-uA-K33" secondAttribute="bottom" constant="1" id="ZaX-aG-OI5"/>
-                            <constraint firstItem="q71-C4-Ae3" firstAttribute="bottom" secondItem="gxu-ST-MKp" secondAttribute="bottom" id="xeI-Yo-1kI"/>
+                            <constraint firstAttribute="bottom" secondItem="gxu-ST-MKp" secondAttribute="bottom" id="xeI-Yo-1kI"/>
                             <constraint firstItem="IsS-uA-K33" firstAttribute="top" secondItem="q71-C4-Ae3" secondAttribute="top" id="y34-Nr-U3O"/>
                         </constraints>
                     </view>

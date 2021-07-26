@@ -28,6 +28,7 @@ class NewPlaceViewController: UITableViewController {
         placeName.addTarget(self, action: #selector(nameDidChanged), for: .editingChanged)
         
         setupEditVC()
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
