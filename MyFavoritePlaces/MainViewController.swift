@@ -64,7 +64,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.placeImageView.contentMode = .scaleAspectFill
         
         cell.placeImageView.layer.cornerRadius = cell.placeImageView.frame.size.height / 2
-        cell.placeImageView.clipsToBounds = true
         
         return cell
     }
