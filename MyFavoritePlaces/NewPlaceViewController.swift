@@ -9,7 +9,7 @@ import UIKit
 
 class NewPlaceViewController: UITableViewController {
 
-    var currentPlace: Place?
+    var currentPlace: Place!
     var imageIsChanged = false
     
     @IBOutlet weak var placeImageView: UIImageView!
@@ -17,6 +17,7 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet weak var placeName: UITextField!
     @IBOutlet weak var placeLocation: UITextField!
     @IBOutlet weak var placeType: UITextField!
+    @IBOutlet weak var ratingControl: RatingControll!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -77,6 +78,7 @@ class NewPlaceViewController: UITableViewController {
             placeType.text = currentPlace?.type
             placeImageView.image = image
             placeImageView.contentMode = .scaleAspectFill
+            ratingControl.rating = Int(currentPlace.rating)
         }
     }
     
@@ -103,7 +105,8 @@ class NewPlaceViewController: UITableViewController {
             name: placeName.text ?? "",
             location: placeLocation.text,
             type: placeType.text,
-            image: image?.pngData()
+            image: image?.pngData(),
+            rating: Double(ratingControl.rating)
         )
         
         if currentPlace != nil {
@@ -112,6 +115,7 @@ class NewPlaceViewController: UITableViewController {
                 currentPlace?.location = newPlace.location
                 currentPlace?.type = newPlace.type
                 currentPlace?.image = newPlace.image
+                currentPlace?.rating = newPlace.rating
             }
         } else {
             StorageManager.saveObjects(newPlace)

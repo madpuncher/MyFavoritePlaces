@@ -7,13 +7,16 @@
 
 import UIKit
 
-
 class RatingControll: UIStackView {
     
     //MARK: - Properties
     private var ratingButtons = [UIButton]()
         
-    var rating = 0
+    var rating = 0 {
+        didSet {
+            updateButtonSelected()
+        }
+    }
     
     //MARK: - Initialization
     override init(frame: CGRect) {
@@ -36,8 +39,6 @@ class RatingControll: UIStackView {
         } else {
             rating = ratingNumber
         }
-        
-        updateButtonSelected()
     }
     
     //MARK: - Setup Buttons
