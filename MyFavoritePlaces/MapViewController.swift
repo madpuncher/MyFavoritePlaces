@@ -9,9 +9,15 @@ import UIKit
 import MapKit
 import CoreLocation
 
+protocol MapVCDelegate {
+    func getAddress(_ address: String?)
+}
+
 class MapViewController: UIViewController {
     
+    var mapVCDelegate: MapVCDelegate?
     var currentPlace = Place()
+    
     let annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
     var incomeSegueIdentifier = ""
@@ -93,6 +99,8 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func doneAction(_ sender: Any) {
+        mapVCDelegate?.getAddress(addressLabel.text)
+        dismiss(animated: true)
     }
     
     private func showUserLocation() {
