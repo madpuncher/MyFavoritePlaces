@@ -59,7 +59,9 @@ class MapViewController: UIViewController {
             setupLocationManager()
             checkLocationAuth()
         } else {
-            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.showAlert(title: "Your location is not aviable", message: "Need to enable in settings ")
+            }
         }
     }
     
@@ -72,13 +74,22 @@ class MapViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @IBAction func centerViewInUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
     private func checkLocationAuth() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
             break
         case .denied:
-            //
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.showAlert(title: "Your location is not aviable", message: "Need to give permission in settings ")
+            }
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -89,6 +100,15 @@ class MapViewController: UIViewController {
         @unknown default:
             print("Have new case")
         }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }
 
