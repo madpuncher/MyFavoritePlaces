@@ -11,12 +11,14 @@ import MapKit
 class MapViewController: UIViewController {
     
     var currentPlace: Place!
+    let annotationIdentifier = "annotationIdentifier"
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocation()
+        mapView.delegate = self
     }
     
     private func setupLocation() {
@@ -50,4 +52,27 @@ class MapViewController: UIViewController {
         dismiss(animated: true)
     }
     
+}
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) as? MKPinAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            annotationView?.canShowCallout = true
+        }
+        
+        if let data = currentPlace.image {
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            imageView.layer.cornerRadius = 10
+            imageView.clipsToBounds = true
+            imageView.image = UIImage(data: data)
+            annotationView?.rightCalloutAccessoryView = imageView
+        }
+        return annotationView
+    }
 }
