@@ -14,6 +14,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var filteredPlaces: Results<Place>!
     private var ascending = false
     private var searchController = UISearchController(searchResultsController: nil)
+    
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return true }
         return text.isEmpty
@@ -43,27 +44,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if !searchBarIsEmpty {
             return filteredPlaces.count
         }
-        return places.isEmpty ? 0 : places.count
+        return places.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
-        var place = Place()
-        
-        if searchBarIsEmpty {
-            place = places[indexPath.row]
-        } else {
-            place = filteredPlaces[indexPath.row]
-        }
+        let place = searchBarIsEmpty ? places[indexPath.row] : filteredPlaces[indexPath.row]
         
         cell.nameLabel.text = place.name
         cell.locationLabel.text = place.location
         cell.typeLabel.text = place.type
         cell.placeImageView.image = UIImage(data: place.image!)
-        cell.placeImageView.contentMode = .scaleAspectFill
-        
-        cell.placeImageView.layer.cornerRadius = cell.placeImageView.frame.size.height / 2
+        cell.cosmosView.rating = place.rating
         
         return cell
     }
@@ -94,13 +87,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segue.identifier == "editPlace" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             
-            let currentPlace: Place
-            
-            if searchBarIsEmpty {
-                currentPlace = places[indexPath.row]
-            } else {
-                currentPlace = filteredPlaces[indexPath.row]
-            }
+            let currentPlace = searchBarIsEmpty ? places[indexPath.row] : filteredPlaces[indexPath.row]
             
             guard let editVC = segue.destination as? NewPlaceViewController else { return }
             editVC.currentPlace = currentPlace
@@ -123,11 +110,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func sortedAction(_ sender: Any) {
         ascending.toggle()
         
-        if ascending {
-            sortedButtonLabel.image = #imageLiteral(resourceName: "ZA")
-        } else {
-            sortedButtonLabel.image = #imageLiteral(resourceName: "AZ")
-        }
+        sortedButtonLabel.image = ascending ?  #imageLiteral(resourceName: "ZA") : #imageLiteral(resourceName: "AZ")
         
         ascendingSorted()
     }

@@ -11,6 +11,7 @@
 		02003F0F26AD83C300F62952 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02003F0E26AD83C300F62952 /* RealmSwift */; };
 		02003F1126AD997E00F62952 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02003F1026AD997E00F62952 /* StorageManager.swift */; };
 		02003F1626AEED1F00F62952 /* RatingControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02003F1526AEED1F00F62952 /* RatingControll.swift */; };
+		02003F1C26B0109B00F62952 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 02003F1B26B0109B00F62952 /* Cosmos */; };
 		02529EA326AC1B3F0087689C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02529EA226AC1B3F0087689C /* AppDelegate.swift */; };
 		02529EA526AC1B3F0087689C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02529EA426AC1B3F0087689C /* SceneDelegate.swift */; };
 		02529EAA26AC1B3F0087689C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02529EA826AC1B3F0087689C /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02003F1C26B0109B00F62952 /* Cosmos in Frameworks */,
 				02003F0F26AD83C300F62952 /* RealmSwift in Frameworks */,
 				02003F0D26AD83C300F62952 /* Realm in Frameworks */,
 			);
@@ -51,13 +53,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02003F1726AEFA7A00F62952 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		02529E9626AC1B3F0087689C = {
 			isa = PBXGroup;
 			children = (
@@ -85,7 +80,6 @@
 				02529EBA26AC4EEE0087689C /* Place.swift */,
 				02003F1026AD997E00F62952 /* StorageManager.swift */,
 				02003F1526AEED1F00F62952 /* RatingControll.swift */,
-				02003F1726AEFA7A00F62952 /* New Group */,
 				02529EA826AC1B3F0087689C /* Main.storyboard */,
 				02529EAB26AC1B410087689C /* Assets.xcassets */,
 				02529EAD26AC1B410087689C /* LaunchScreen.storyboard */,
@@ -113,6 +107,7 @@
 			packageProductDependencies = (
 				02003F0C26AD83C300F62952 /* Realm */,
 				02003F0E26AD83C300F62952 /* RealmSwift */,
+				02003F1B26B0109B00F62952 /* Cosmos */,
 			);
 			productName = MyFavoritePlaces;
 			productReference = 02529E9F26AC1B3F0087689C /* MyFavoritePlaces.app */;
@@ -143,6 +138,7 @@
 			mainGroup = 02529E9626AC1B3F0087689C;
 			packageReferences = (
 				02003F0B26AD83C300F62952 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				02003F1A26B0109B00F62952 /* XCRemoteSwiftPackageReference "Cosmos" */,
 			);
 			productRefGroup = 02529EA026AC1B3F0087689C /* Products */;
 			projectDirPath = "";
@@ -392,6 +388,14 @@
 				minimumVersion = 10.11.0;
 			};
 		};
+		02003F1A26B0109B00F62952 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 23.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -404,6 +408,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 02003F0B26AD83C300F62952 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		02003F1B26B0109B00F62952 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02003F1A26B0109B00F62952 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

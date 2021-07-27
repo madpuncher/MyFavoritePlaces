@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gxu-ST-MKp">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gxu-ST-MKp">
                                 <rect key="frame" x="0.0" y="76" width="414" height="660"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -36,39 +36,63 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="lSy-VY-own">
-                                                    <rect key="frame" x="96" y="7.9999999999999964" width="310" height="60.666666666666657"/>
+                                                    <rect key="frame" x="96" y="7.9999999999999964" width="202" height="60.666666666666657"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jht-j7-Kam">
-                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="20.666666666666668"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="202" height="20.666666666666668"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgA-h3-tyk">
-                                                            <rect key="frame" x="0.0" y="23.666666666666671" width="310" height="18.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="23.666666666666671" width="202" height="18.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scI-5B-pkR">
-                                                            <rect key="frame" x="0.0" y="45" width="310" height="15.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="45" width="202" height="15.666666666666664"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgp-mN-xtJ" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="306" y="32.333333333333336" width="100" height="20"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="6bU-Wu-GUU"/>
+                                                        <constraint firstAttribute="height" constant="20" id="enf-2H-QTm"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="filledImage" value="filledStar"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="emptyStar"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="emptyBorderWidth">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                            <real key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                                            <integer key="value" value="0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="SDX-3d-wuU" firstAttribute="leading" secondItem="oph-mF-PS0" secondAttribute="leading" constant="15" id="3xn-L7-EWX"/>
                                                 <constraint firstAttribute="bottom" secondItem="lSy-VY-own" secondAttribute="bottom" constant="16" id="Cxf-mz-l4K"/>
                                                 <constraint firstItem="lSy-VY-own" firstAttribute="leading" secondItem="SDX-3d-wuU" secondAttribute="trailing" constant="16" id="HQC-UI-YQz"/>
+                                                <constraint firstItem="jgp-mN-xtJ" firstAttribute="centerY" secondItem="oph-mF-PS0" secondAttribute="centerY" id="Jj5-Rh-gV2"/>
+                                                <constraint firstAttribute="trailing" secondItem="jgp-mN-xtJ" secondAttribute="trailing" constant="8" id="Kjg-MH-kzP"/>
                                                 <constraint firstItem="SDX-3d-wuU" firstAttribute="centerY" secondItem="oph-mF-PS0" secondAttribute="centerY" id="LVm-Gu-ZCL"/>
-                                                <constraint firstAttribute="trailing" secondItem="lSy-VY-own" secondAttribute="trailing" constant="8" id="hFR-Xr-xxt"/>
                                                 <constraint firstItem="lSy-VY-own" firstAttribute="top" secondItem="oph-mF-PS0" secondAttribute="top" constant="8" id="o75-Tn-9ys"/>
+                                                <constraint firstItem="jgp-mN-xtJ" firstAttribute="leading" secondItem="lSy-VY-own" secondAttribute="trailing" constant="8" id="zVu-MC-M3K"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="cosmosView" destination="jgp-mN-xtJ" id="16Y-XO-u7X"/>
                                             <outlet property="locationLabel" destination="FgA-h3-tyk" id="AW2-ZZ-8w8"/>
                                             <outlet property="nameLabel" destination="Jht-j7-Kam" id="4dy-Gm-x9n"/>
                                             <outlet property="placeImageView" destination="SDX-3d-wuU" id="kpK-pj-2df"/>
@@ -371,6 +395,8 @@
     <resources>
         <image name="AZ" width="25" height="24"/>
         <image name="Photo" width="194.66667175292969" height="195.66667175292969"/>
+        <image name="emptyStar" width="510" height="512"/>
+        <image name="filledStar" width="475" height="476"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
