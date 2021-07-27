@@ -66,7 +66,14 @@ class NewPlaceViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMap" {
+        
+        guard
+            let identifier = segue.identifier,
+            let mapVC = segue.destination as? MapViewController else { return }
+        
+        mapVC.incomeSegueIdentifier = identifier
+        
+        if identifier == "showPlace" {
             guard let mapVC = segue.destination as? MapViewController else { return }
             mapVC.currentPlace.name = placeName.text ?? ""
             mapVC.currentPlace.location = placeLocation.text

@@ -14,12 +14,16 @@ class MapViewController: UIViewController {
     var currentPlace = Place()
     let annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
+    var incomeSegueIdentifier = ""
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapPinImage: UIImageView!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLocation()
+        setupMapView()
         mapView.delegate = self
         checkLocationService()
     }
@@ -70,11 +74,27 @@ class MapViewController: UIViewController {
         locationManager.delegate = self
     }
     
+    private func setupMapView() {
+        if incomeSegueIdentifier == "showPlace" {
+            setupLocation()
+            mapPinImage.isHidden = true
+            addressLabel.isHidden = true
+            doneButton.isHidden = true 
+        }
+    }
+    
     @IBAction func cancellAction() {
         dismiss(animated: true)
     }
     
     @IBAction func centerViewInUserLocation() {
+        showUserLocation()
+    }
+    
+    @IBAction func doneAction(_ sender: Any) {
+    }
+    
+    private func showUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
             mapView.setRegion(region, animated: true)
@@ -85,6 +105,7 @@ class MapViewController: UIViewController {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
+            if incomeSegueIdentifier == "getAddress" { showUserLocation() }
             break
         case .denied:
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
