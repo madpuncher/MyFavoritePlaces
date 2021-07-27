@@ -183,7 +183,7 @@
                                                     </constraints>
                                                     <state key="normal" image="map"/>
                                                     <connections>
-                                                        <segue destination="Gw7-cF-cza" kind="presentation" modalPresentationStyle="overFullScreen" id="I2w-1s-j7n"/>
+                                                        <segue destination="Gw7-cF-cza" kind="presentation" identifier="showMap" modalPresentationStyle="overFullScreen" id="I2w-1s-j7n"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -394,6 +394,9 @@
                             <constraint firstItem="fTl-fv-ewO" firstAttribute="top" secondItem="Yit-bJ-icm" secondAttribute="top" constant="40" id="qwO-ym-R8w"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="SIR-RD-ON2" id="wun-L2-c6H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MUG-HP-AP3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

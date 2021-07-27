@@ -65,6 +65,13 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMap" {
+            guard let mapVC = segue.destination as? MapViewController else { return }
+            mapVC.currentPlace = currentPlace
+        }
+    }
+    
     func setupEditVC() {
         if currentPlace != nil {
             
@@ -93,7 +100,7 @@ class NewPlaceViewController: UITableViewController {
     
     func savePlace() {
         
-        let image = imageIsChanged ? #imageLiteral(resourceName: "imagePlaceholder") : placeImageView.image
+        let image = !imageIsChanged ? #imageLiteral(resourceName: "imagePlaceholder") : placeImageView.image
         
         let newPlace = Place(
             name: placeName.text ?? "",
@@ -118,7 +125,7 @@ class NewPlaceViewController: UITableViewController {
     }
     
     @objc private func nameDidChanged() {
-        saveButton.isEnabled = placeName.text?.isEmpty == false ? false : true
+        saveButton.isEnabled = placeName.text?.isEmpty == false ? true : false
     }
     
     @IBAction func cancelButton(_ sender: Any) {
