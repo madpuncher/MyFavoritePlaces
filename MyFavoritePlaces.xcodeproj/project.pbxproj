@@ -22,6 +22,7 @@
 		02529EBB26AC4EEE0087689C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02529EBA26AC4EEE0087689C /* Place.swift */; };
 		02529EBD26AC645E0087689C /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02529EBC26AC645E0087689C /* NewPlaceViewController.swift */; };
 		02D37C2426B01EFF00ABA602 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D37C2326B01EFF00ABA602 /* MapViewController.swift */; };
+		02D37C2626B06A6300ABA602 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D37C2526B06A6300ABA602 /* MapManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		02529EBA26AC4EEE0087689C /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		02529EBC26AC645E0087689C /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		02D37C2326B01EFF00ABA602 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		02D37C2526B06A6300ABA602 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,21 +76,62 @@
 		02529EA126AC1B3F0087689C /* MyFavoritePlaces */ = {
 			isa = PBXGroup;
 			children = (
-				02529EA226AC1B3F0087689C /* AppDelegate.swift */,
-				02529EA426AC1B3F0087689C /* SceneDelegate.swift */,
-				02529EB626AC1B7A0087689C /* MainViewController.swift */,
-				02529EBC26AC645E0087689C /* NewPlaceViewController.swift */,
-				02529EB826AC34470087689C /* CustomTableViewCell.swift */,
-				02D37C2326B01EFF00ABA602 /* MapViewController.swift */,
-				02529EBA26AC4EEE0087689C /* Place.swift */,
-				02003F1026AD997E00F62952 /* StorageManager.swift */,
-				02003F1526AEED1F00F62952 /* RatingControll.swift */,
-				02529EA826AC1B3F0087689C /* Main.storyboard */,
-				02529EAB26AC1B410087689C /* Assets.xcassets */,
-				02529EAD26AC1B410087689C /* LaunchScreen.storyboard */,
-				02529EB026AC1B410087689C /* Info.plist */,
+				02D37C2726B08C4900ABA602 /* ViewControllers */,
+				02D37C2926B08C7800ABA602 /* Helpers */,
+				02D37C2826B08C6C00ABA602 /* Models */,
+				02D37C2A26B08C9200ABA602 /* Supporting */,
+				02D37C2B26B08CB300ABA602 /* IBuilders */,
 			);
 			path = MyFavoritePlaces;
+			sourceTree = "<group>";
+		};
+		02D37C2726B08C4900ABA602 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				02529EB626AC1B7A0087689C /* MainViewController.swift */,
+				02529EBC26AC645E0087689C /* NewPlaceViewController.swift */,
+				02D37C2326B01EFF00ABA602 /* MapViewController.swift */,
+				02529EB826AC34470087689C /* CustomTableViewCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		02D37C2826B08C6C00ABA602 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02529EBA26AC4EEE0087689C /* Place.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		02D37C2926B08C7800ABA602 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				02D37C2526B06A6300ABA602 /* MapManager.swift */,
+				02003F1026AD997E00F62952 /* StorageManager.swift */,
+				02003F1526AEED1F00F62952 /* RatingControll.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		02D37C2A26B08C9200ABA602 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				02529EA426AC1B3F0087689C /* SceneDelegate.swift */,
+				02529EA226AC1B3F0087689C /* AppDelegate.swift */,
+				02529EAB26AC1B410087689C /* Assets.xcassets */,
+				02529EB026AC1B410087689C /* Info.plist */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		02D37C2B26B08CB300ABA602 /* IBuilders */ = {
+			isa = PBXGroup;
+			children = (
+				02529EA826AC1B3F0087689C /* Main.storyboard */,
+				02529EAD26AC1B410087689C /* LaunchScreen.storyboard */,
+			);
+			path = IBuilders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +219,7 @@
 				02003F1626AEED1F00F62952 /* RatingControll.swift in Sources */,
 				02D37C2426B01EFF00ABA602 /* MapViewController.swift in Sources */,
 				02003F1126AD997E00F62952 /* StorageManager.swift in Sources */,
+				02D37C2626B06A6300ABA602 /* MapManager.swift in Sources */,
 				02529EA326AC1B3F0087689C /* AppDelegate.swift in Sources */,
 				02529EB926AC34470087689C /* CustomTableViewCell.swift in Sources */,
 				02529EA526AC1B3F0087689C /* SceneDelegate.swift in Sources */,
@@ -327,7 +371,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SAY4Y2DWXX;
-				INFOPLIST_FILE = MyFavoritePlaces/Info.plist;
+				INFOPLIST_FILE = MyFavoritePlaces/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -347,7 +391,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SAY4Y2DWXX;
-				INFOPLIST_FILE = MyFavoritePlaces/Info.plist;
+				INFOPLIST_FILE = MyFavoritePlaces/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
