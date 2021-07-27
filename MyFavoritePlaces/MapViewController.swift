@@ -10,7 +10,7 @@ import MapKit
 
 class MapViewController: UIViewController {
     
-    var currentPlace: Place!
+    var currentPlace = Place()
     let annotationIdentifier = "annotationIdentifier"
     
     @IBOutlet weak var mapView: MKMapView!
@@ -45,7 +45,6 @@ class MapViewController: UIViewController {
             self?.mapView.selectAnnotation(annotation, animated: true)
         }
         
-        
     }
     
     @IBAction func cancellAction() {
@@ -54,6 +53,7 @@ class MapViewController: UIViewController {
     
 }
 
+//MARK: - Extension for MapKit delegate
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
