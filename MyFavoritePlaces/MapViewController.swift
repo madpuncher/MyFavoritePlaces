@@ -22,6 +22,12 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     var incomeSegueIdentifier = ""
     var placeCoordinate: CLLocationCoordinate2D?
+    var directionsArray: [MKDirections] = []
+    var previousLocation: CLLocation? {
+        didSet {
+            startTrackingUserLocation()
+        }
+    }
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapPinImage: UIImageView!
@@ -97,6 +103,13 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func resetMapView(withNew directions: MKDirections) {
+        mapView.removeOverlays(mapView.overlays)
+        directionsArray.append(directions)
+        let _ = directionsArray.map { $0.cancel() }
+        directionsArray.removeAll()
+    }
+    
     @IBAction func cancellAction() {
         dismiss(animated: true)
     }
@@ -115,15 +128,17 @@ class MapViewController: UIViewController {
     }
     
     private func getDirections() {
-       guard
-        let location = locationManager.location?.coordinate else {
-            showAlert(title: "ERROR", message: "Current location is not found")
-            return
-        }
+        guard
+            let location = locationManager.location?.coordinate else { showAlert(title: "ERROR", message: "Current location is not found"); return }
         
-        guard let request = createDirectionRequest(from: location) else { showAlert(title: "ERROR", message: "Destination is not found"); return }
+        locationManager.startUpdatingLocation()
+        previousLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        
+        guard let request = createDirectionsRequest(from: location) else { showAlert(title: "ERROR", message: "Destination is not found"); return }
         
         let directions = MKDirections(request: request)
+        resetMapView(withNew: directions)
+        
         directions.calculate { [weak self] response, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -146,7 +161,7 @@ class MapViewController: UIViewController {
         
     }
     
-    private func createDirectionRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
+    private func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
         
         guard let destinationCoordinate = placeCoordinate else { return nil }
         
@@ -167,6 +182,18 @@ class MapViewController: UIViewController {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location, latitudinalMeters: 1000, longitudinalMeters: 1000)
             mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    private func startTrackingUserLocation() {
+        guard let previousLocation = previousLocation else { return }
+        let center = getCenterLocation(for: mapView)
+        
+        guard center.distance(from: previousLocation) > 50  else { return }
+        self.previousLocation = center
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.showUserLocation()
         }
     }
     
@@ -239,6 +266,14 @@ extension MapViewController: MKMapViewDelegate {
         let center = getCenterLocation(for: mapView)
         let geocoder = CLGeocoder()
         
+        if incomeSegueIdentifier == "sHowPlace" && previousLocation != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+                self?.showUserLocation()
+            }
+        }
+ 
+        geocoder.cancelGeocode()
+        
         geocoder.reverseGeocodeLocation(center) { placemarks, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -253,7 +288,7 @@ extension MapViewController: MKMapViewDelegate {
             
             DispatchQueue.main.async { [unowned self] in
                 if streetName != nil && buildNumber != nil {
-                self.addressLabel.text = "\(streetName!), \(buildNumber!)"
+                    self.addressLabel.text = "\(streetName!), \(buildNumber!)"
                 } else if streetName != nil {
                     self.addressLabel.text = "\(streetName!)"
                 } else {
