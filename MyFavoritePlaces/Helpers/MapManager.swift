@@ -55,7 +55,7 @@ class MapManager {
             checkLocationAuthorization(mapView: mapView, segueIdentifier: segueIdentifier)
             closure()
         } else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
                 self.showAlert(
                     title: "Location Services are Disabled",
                     message: "To enable it go: Settings -> Privacy -> Location Services and turn On"
@@ -128,7 +128,7 @@ class MapManager {
                 return
             }
             
-            guard let response = response else {
+            guard let response = response else { 
                 self.showAlert(title: "Error", message: "Directions are not available")
                 return
             }

@@ -27,7 +27,7 @@ class MapViewController: UIViewController {
             mapManager.startTrackingUserLocation(for: mapView, and: previousLocation) { currentLocation in
                 self.previousLocation = currentLocation
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [unowned self] in
                     self.mapManager.showUserLocation(mapView: self.mapView)
                 }
             }
@@ -62,7 +62,7 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func goButtonAction() {
-        mapManager.getDirections(for: mapView) { location in
+        mapManager.getDirections(for: mapView) { [unowned self] location in
             self.previousLocation = location
         }
     }
@@ -116,7 +116,7 @@ extension MapViewController: MKMapViewDelegate {
         let geocoder = CLGeocoder()
         
         if incomeSegueIdentifier == "sHowPlace" && previousLocation != nil {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [unowned self] in
                 self.mapManager.showUserLocation(mapView: self.mapView)
             }
         }
