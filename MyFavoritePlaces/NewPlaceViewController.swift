@@ -8,7 +8,7 @@
 import UIKit
 
 class NewPlaceViewController: UITableViewController {
-
+    
     var currentPlace: Place!
     var imageIsChanged = false
     
@@ -51,7 +51,7 @@ class NewPlaceViewController: UITableViewController {
             }
             camera.setValue(cameraImage, forKey: "image")
             camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
-
+            
             let cancel = UIAlertAction(title: "Cancel", style: .cancel)
             
             alert.addAction(library)
@@ -64,7 +64,7 @@ class NewPlaceViewController: UITableViewController {
             view.endEditing(true)
         }
     }
-
+    
     func setupEditVC() {
         if currentPlace != nil {
             
@@ -92,14 +92,8 @@ class NewPlaceViewController: UITableViewController {
     }
     
     func savePlace() {
-                
-        var image: UIImage?
         
-        if imageIsChanged == false {
-            image = #imageLiteral(resourceName: "imagePlaceholder")
-        } else {
-            image = placeImageView.image
-        }
+        let image = imageIsChanged ? #imageLiteral(resourceName: "imagePlaceholder") : placeImageView.image
         
         let newPlace = Place(
             name: placeName.text ?? "",
@@ -124,11 +118,7 @@ class NewPlaceViewController: UITableViewController {
     }
     
     @objc private func nameDidChanged() {
-        if placeName.text?.isEmpty == false {
-            saveButton.isEnabled = true
-        } else {
-            saveButton.isEnabled = false
-        }
+        saveButton.isEnabled = placeName.text?.isEmpty == false ? false : true
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -166,5 +156,5 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
         
         dismiss(animated: true)
     }
-
+    
 }

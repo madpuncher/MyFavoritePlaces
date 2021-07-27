@@ -175,11 +175,24 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hk-f6-mDZ">
+                                                    <rect key="frame" x="336" y="181" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="qAG-ED-rsf"/>
+                                                        <constraint firstAttribute="width" constant="50" id="y6r-Q5-GSu"/>
+                                                    </constraints>
+                                                    <state key="normal" image="map"/>
+                                                    <connections>
+                                                        <segue destination="Gw7-cF-cza" kind="presentation" modalPresentationStyle="overFullScreen" id="I2w-1s-j7n"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="xX4-YM-xJK" firstAttribute="leading" secondItem="aZA-tD-pf9" secondAttribute="leading" id="0QW-lL-nAa"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7hk-f6-mDZ" secondAttribute="bottom" constant="8" id="Bzk-cg-mwJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="xX4-YM-xJK" secondAttribute="trailing" id="LcM-ii-0xD"/>
                                                 <constraint firstAttribute="bottom" secondItem="xX4-YM-xJK" secondAttribute="bottom" id="OZz-cS-cjM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7hk-f6-mDZ" secondAttribute="trailing" constant="8" id="Ylj-2u-GJK"/>
                                                 <constraint firstItem="xX4-YM-xJK" firstAttribute="top" secondItem="aZA-tD-pf9" secondAttribute="top" id="klI-7S-dvy"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -347,6 +360,45 @@
             </objects>
             <point key="canvasLocation" x="1374" y="137"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="1Qq-V6-gpK">
+            <objects>
+                <viewController id="Gw7-cF-cza" customClass="MapViewController" customModule="MyFavoritePlaces" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CyX-sw-6E8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SIR-RD-ON2">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-fv-ewO">
+                                <rect key="frame" x="334" y="40" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="X3W-fy-MBg"/>
+                                    <constraint firstAttribute="height" constant="40" id="zpE-rt-UN4"/>
+                                </constraints>
+                                <state key="normal" image="cancel"/>
+                                <connections>
+                                    <action selector="cancellAction" destination="Gw7-cF-cza" eventType="touchUpInside" id="brQ-AL-9lz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Yit-bJ-icm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Yit-bJ-icm" firstAttribute="trailing" secondItem="fTl-fv-ewO" secondAttribute="trailing" constant="40" id="Cfp-s2-b7Y"/>
+                            <constraint firstItem="SIR-RD-ON2" firstAttribute="leading" secondItem="CyX-sw-6E8" secondAttribute="leading" id="Ykq-om-Xee"/>
+                            <constraint firstAttribute="bottom" secondItem="SIR-RD-ON2" secondAttribute="bottom" id="cOC-DI-mSD"/>
+                            <constraint firstItem="SIR-RD-ON2" firstAttribute="top" secondItem="CyX-sw-6E8" secondAttribute="top" id="eax-ed-5EN"/>
+                            <constraint firstAttribute="trailing" secondItem="SIR-RD-ON2" secondAttribute="trailing" id="fyd-9c-mEe"/>
+                            <constraint firstItem="fTl-fv-ewO" firstAttribute="top" secondItem="Yit-bJ-icm" secondAttribute="top" constant="40" id="qwO-ym-R8w"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MUG-HP-AP3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2129" y="137"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ttB-oU-qNH">
             <objects>
@@ -354,6 +406,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="DsY-AU-rNt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="24"/>
                         </textAttributes>
@@ -390,13 +443,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iCL-Aq-IUg"/>
+        <segue reference="Oqa-1q-dHM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AZ" width="25" height="24"/>
         <image name="Photo" width="194.66667175292969" height="195.66667175292969"/>
+        <image name="cancel" width="128" height="128"/>
         <image name="emptyStar" width="510" height="512"/>
         <image name="filledStar" width="475" height="476"/>
+        <image name="map" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
